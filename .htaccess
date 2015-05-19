@@ -1,0 +1,20 @@
+
+RewriteEngine On 
+RewriteRule ^proyectos$ projects.html [NC,L]
+RewriteRule ^proyectos/sorner$ sorner.html [NC,L]
+RewriteRule ^proyectos/pirapop$ pirapop.html [NC,L]
+RewriteRule ^proyectos/infovisual$ infovisual.html [NC,L]
+RewriteRule ^proyectos/lumined$ lumined.html [NC,L]
+RewriteRule ^proyectos/el-aguante$ elaguante.html [NC,L]
+RewriteRule ^proyectos/san-victorino$ sanvictorino.html [NC,L]
+RewriteRule ^proyectos/portafolio$ portafolio.html [NC,L]
+RewriteRule ^proyectos/sublime$ sublime.html [NC,L]
+RewriteRule ^servicios$ services.html [NC,L] 
+RewriteRule ^acerca$ aboutme.html [NC,L]   
+RewriteRule ^contacto$ contact.html [NC,L] 
+RewriteRule ^projects$ projects.html [NC,L]
+RewriteRule ^services$ services.html [NC,L] 
+RewriteRule ^aboutme$ aboutme.html [NC,L]   
+RewriteRule ^contact$ contact.html [NC,L] 
+
+RewriteRule ^proyectos/([a-zA-Z0-9_-]+)/$ /proyectos/categoria.php?nombre=$1
