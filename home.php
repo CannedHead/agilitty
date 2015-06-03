@@ -1,3 +1,43 @@
+<?php
+    if(isset($_POST['submit'])) 
+    {
+
+    $message=
+    'Full Name: '.$_POST['fullname'].'<br />
+    Subject:    Contacto <br />
+    Email:  '.$_POST['emailid'].'<br />
+    Comments:   '.$_POST['comments'].'
+    ';
+        require "phpmailer/class.phpmailer.php"; //include phpmailer class
+          
+        // Instantiate Class  
+        $mail = new PHPMailer();  
+          
+        // Set up SMTP  
+        $mail->IsSMTP();                // Sets up a SMTP connection  
+        $mail->SMTPAuth = true;         // Connection with the SMTP does require authorization    
+        $mail->SMTPSecure = "ssl";      // Connect using a TLS connection  
+        $mail->Host = "smtp.gmail.com";  //Gmail SMTP server address
+        $mail->Port = 465;  //Gmail SMTP port
+        $mail->Encoding = '7bit';
+        
+        // Authentication  
+        $mail->Username   = "jd.florez39@gmail.com"; // Your full Gmail address
+        $mail->Password   = "takemeback09"; // Your Gmail password
+          
+        // Compose
+        $mail->SetFrom($_POST['emailid'], $_POST['fullname']);
+        $mail->AddReplyTo($_POST['emailid'], $_POST['fullname']);
+        $mail->Subject = "New Contact Form Enquiry";      // Subject (which isn't required)  
+        $mail->MsgHTML($message);
+     
+        // Send To  
+        $mail->AddAddress("jdavid@cannedhead.com", "Recipient Name"); // Where to send it - Recipient
+        $result = $mail->Send();        // Send!  
+        $message = $result ? 'Successfully Sent!' : 'Sending Failed!';      
+        unset($mail);
+    }
+?>
 <!doctype html>
 <html class="no-js" lang="">
     <head>
@@ -219,17 +259,17 @@
                     <div class="col-sm-12 con">
                         <div class="col-sm-8">
 
-                            <form class="col-sm-8">
-                                <input type="text" name="firstname" placeholder="Nombre y Apellido">
+                            <form class="col-sm-8" name="form1" id="form1" action="" method="post">
+                                <input type="text" name="fullname" placeholder="Nombre y Apellido" required>
                                 <br>
                                
-                                <input type="text" name="lastname" placeholder="E-mail">
+                                <input type="email" name="emailid" placeholder="E-mail" required>
                                 <br>
 
-                                ​<textarea id="txtArea" rows="3" cols="70" placeholder="Mensaje"></textarea>
+                                ​<textarea id="txtArea" name="comments" rows="3" cols="70" placeholder="Mensaje" required></textarea>
                                 <input class="enviar" type="submit" value="Enviar">
-                                </form>
-                            
+                            </form>
+                            <p><?php if(!empty($message)) echo $message; ?></p>
                         </div>
                         <div class="col-sm-4 dir">
 
