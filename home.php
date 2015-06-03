@@ -21,8 +21,8 @@ Mensaje:   '.$_POST['comments'].'
     $mail->Encoding = '7bit';
     
     // Authentication  
-    $mail->Username   = "email@gmail.com"; // Your full Gmail address
-    $mail->Password   = "password"; // Your Gmail password
+    $mail->Username   = "contact@cannedhead.com"; // Your full Gmail address
+    $mail->Password   = "CabezaDeLata1990"; // Your Gmail password
       
     // Compose
     $mail->SetFrom($_POST['emailid'], $_POST['fullname']);
@@ -32,7 +32,7 @@ Mensaje:   '.$_POST['comments'].'
     // Send To  
     $mail->AddAddress("julian@cannedhead.com", "Recipient Name"); // Where to send it - Recipient
     $result = $mail->Send();        // Send!  
-    $message = $result ? 'Successfully Sent!' : 'Sending Failed! '+$mail->ErrorInfo;      
+    $message = $result ? 'Ya recibimos tu información' : 'Sending Failed! '+$mail->ErrorInfo;      
     unset($mail);
 
 }
@@ -57,10 +57,10 @@ Mensaje:   '.$_POST['comments'].'
                     <img id="barra" class="img-responsive " src="https://s3-sa-east-1.amazonaws.com/cannedhead.zynergy/agility/menu.svg" alt=""> 
                     <ul class="list-inline">
                         <li>
-                            <a href="servicios.html">Servicios</a>
+                            <a href="servicios.php">Servicios</a>
                         </li>
                         <li>
-                            <a href="home.html">Nosotros</a>
+                            <a href="home.php">Nosotros</a>
                         </li>
                     </ul>
                     <img class="img-responsive navbarbrand" src="https://s3-sa-east-1.amazonaws.com/cannedhead.zynergy/agility/logo.svg" alt="zynergy">
@@ -259,15 +259,16 @@ Mensaje:   '.$_POST['comments'].'
                             <form class="col-sm-8" name="form1" id="form1" action="" method="post">
                                 <fieldset>
                                   <input type="text" name="fullname" placeholder="Nombre Completo" />
-                                  <br />
+                                  <br/>
                                   <input type="text" name="emailid" placeholder="Email" />
-                                  <br />
+                                  <br/>
                                   <textarea rows="4" cols="20" name="comments" placeholder="Mensaje"></textarea>
-                                  <br />
+                                  <br/>
                                   <input class="enviar" type="submit" name="submit" value="Enviar" />
+                                  <p><?php if(!empty($message)) echo $message; ?></p>
                                 </fieldset>
                             </form>
-                            <p><?php if(!empty($message)) echo $message; ?></p
+                            
                         </div>
                         <div class="col-sm-4 dir">
 
